@@ -191,7 +191,7 @@ UCT=
 User's comments`nex) name of the catraoutg
 )
 Gui, Font, s14 cFFFFFF , Calibri bold
-Gui, Add, Text, BackgroundTrans x35 y100 w140 h50 , Inpud Shorcud`n Do not include [Alt] Key ;Userkey1_
+Gui, Add, Text, BackgroundTrans x35 y100 w140 h50 , Inpud Shorcud`n Do'nt use [Alt] Key ;Userkey1_
 Gui, Add, Text, BackgroundTrans x+10 w80 h50  , Catarogs colom ;Userkey2_
 Gui, Add, Text, BackgroundTrans x+35 w200 h50  , For Multiple Catalog browers ;Radio buttons
 Gui, Add, Text, BackgroundTrans x+40 w280 h50 , %UCT% ;UC_
