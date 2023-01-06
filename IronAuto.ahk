@@ -1,8 +1,9 @@
-;Author BertranKim
+;Author BertrandKim
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ;#Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#SingleInstance, Force
 CoordMode, Mouse, Screen
 CoordMode, Pixel, Screen
 
@@ -10,75 +11,19 @@ CoordMode, Pixel, Screen
 #include lib\Gdip_all.ahk
 #include lib\Gen3.ahk
 #include lib\dpi.ahk
-#SingleInstance, Force
+#include lib\Subtitle.ahk
 Gdip_Startup()
-
-Theme1 := SysButton()
-GuiButtonType1.SetSessionDefaults( Theme1.All , Theme1.Default , Theme1.Hover , Theme1.Pressed )
-SysLogo := New HButton( { Owner: 1 , X: 30 , Y: 25 , W: (800 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "IronAuto ver0.3" , Label: "SysLogo"}, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
-SysMinimize := New HButton( { Owner: 1 , X: 880 , Y: 25 , W: (125 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "^_^" , Label: "SysMinimize" })
-SysClose := New HButton( { Owner: 1 , X: 1020 , Y: 25 , W: (70 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "X" , Label: "SysClose" })
-
-Gui, Add, Picture, x0 y0 w1110 h830 0x4000000, img\background.jpg ;backgroud image
+CAXASLEEP:=300
+Gui, Add, Picture, x0 y0 w1100 h1000 0x4000000, img\background.jpg ;backgroud image
 Gui, Font, cWhite ;font color
 Gui, Color, Black, Black ;background color
 MyColor1 := "cFFCC00" ;groubbox text(number) color
 
-Theme1 := BKButton()
+Theme1 := SysButton()
 GuiButtonType1.SetSessionDefaults( Theme1.All , Theme1.Default , Theme1.Hover , Theme1.Pressed )
-Save := New HButton( { Owner: 1 , X: 870 , Y: 500 , W: (220 * ( A_ScreenDPI / 96 )) , H: (100 * ( A_ScreenDPI / 96 )) , Text: "Save" , Label: "Save" })
-Reb := New HButton( { Owner: 1 , X: 870 , Y: 650 , W: (220 * ( A_ScreenDPI / 96 )) , H: (100 * ( A_ScreenDPI / 96 )) , Text: "Rebolusion!`n (Scroll Lock)" , Label: "Rebolusion" })
-
-Theme1 := BKOButton()
-GuiButtonType1.SetSessionDefaults( Theme1.All , Theme1.Default , Theme1.Hover , Theme1.Pressed )
-CFirst := New HButton( { Owner: 1 , X: 870 , Y: 165 , W: (220 * ( A_ScreenDPI / 96 )) , H: (60 * ( A_ScreenDPI / 96 )) , Text: "Pick up the first`n More Catalog button" , Label: "CFirst" })
-CSecond := New HButton( { Owner: 1 , X: 870 , Y: 230 , W: (220 * ( A_ScreenDPI / 96 )) , H: (60 * ( A_ScreenDPI / 96 )) , Text: "Pick up the second`n More Catalog button" , Label: "CSecond" })
-CThird := New HButton( { Owner: 1 , X: 870 , Y: 295 , W: (220 * ( A_ScreenDPI / 96 )) , H: (60 * ( A_ScreenDPI / 96 )) , Text: "Pick up the third`n More Catalog button" , Label: "CThird" })
-
-BKButton(){
-	local Reb := {}
-	Reb.All := {}
-	Reb.Default := {}
-	Reb.Hover := {}
-	Reb.Pressed := {}
-	;********************************
-	;All
-	Reb.All.W := 200 , Reb.All.H := 70 , Reb.All.Text := "Rebolusion! (Scroll Lock)" , Reb.All.Font := "Calibri" , Reb.All.FontSize := "30" , Reb.All.BackgroundColor := "0xFF22262A" , Reb.All.ButtonMainColor1 := "0xFFFF0000" , Reb.All.ButtonMainColor2 := "0x55FF0000" , Reb.All.ButtonAddGlossy := "1"
-	;********************************
-	;Default
-	Reb.Default.W := 200 , Reb.Default.H := 70 , Reb.Default.Text := "Rebolusion! (Scroll Lock)" , Reb.Default.Font := "Calibri" , Reb.Default.FontOptions := " Bold Center vCenter " , Reb.Default.FontSize := "30" , Reb.Default.H := "0x6602112F" , Reb.Default.TextBottomColor2 := "0x6602112F" , Reb.Default.TextTopColor1 := "0xFFFFFFFF" , Reb.Default.TextTopColor2 := "0xFFFFFFFF" , Reb.Default.TextOffsetX := "0" , Reb.Default.TextOffsetY := "0" , Reb.Default.TextOffsetW := "0" , Reb.Default.TextOffsetH := "0" , Reb.Default.BackgroundColor := "0xFF00000" , Reb.Default.ButtonMainColor1 := "0xFFFF0000" , Reb.Default.ButtonMainColor2 := "0xFFFF0000" , Reb.Default.ButtonAddGlossy := "1" , Reb.Default.GlossTopColor := "0x00FFFFFF" , Reb.Default.GlossTopAccentColor := "00FFFFFF" , Reb.Default.GlossBottomColor := "33000000"
-	;********************************
-	;Hover
-	Reb.Hover.W := 200 , Reb.Hover.H := 70 , Reb.Hover.Text := "Rebolusion! (Scroll Lock)" , Reb.Hover.Font := "Calibri" , Reb.Hover.FontOptions := " Bold Center vCenter " , Reb.Hover.FontSize := "40" , Reb.Hover.H := "0x6602112F" , Reb.Hover.TextBottomColor2 := "0x6602112F" , Reb.Hover.TextTopColor1 := "0xFFFFFFFF" , Reb.Hover.TextTopColor2 := "0xFFFFFFFF" , Reb.Hover.TextOffsetX := "0" , Reb.Hover.TextOffsetY := "0" , Reb.Hover.TextOffsetW := "0" , Reb.Hover.TextOffsetH := "0" , Reb.Hover.BackgroundColor := "0xFF00000" , Reb.Hover.ButtonMainColor1 := "0xFFFF0000" , Reb.Hover.ButtonMainColor2 := "0xFFFF0000" , Reb.Hover.ButtonAddGlossy := "1" , Reb.Hover.GlossTopColor := "0x66FFFFFF" , Reb.Hover.GlossTopAccentColor := "00FFFFFF" , Reb.Hover.GlossBottomColor := "00000000"
-	;********************************
-	;Pressed
-	Reb.Pressed.W := 200 , Reb.Pressed.H := 70 , Reb.Pressed.Text := "Rebolusion! (Scroll Lock)" , Reb.Pressed.Font := "Calibri" , Reb.Pressed.FontOptions := " Bold Center vCenter " , Reb.Pressed.FontSize := "30" , Reb.Pressed.H := "0x00FFFFFF" , Reb.Pressed.TextBottomColor2 := "0x00FFFFFF" , Reb.Pressed.TextTopColor1 := "0x77000000" , Reb.Pressed.TextTopColor2 := "0x77000000" , Reb.Pressed.TextOffsetX := "0" , Reb.Pressed.TextOffsetY := "0" , Reb.Pressed.TextOffsetW := "0" , Reb.Pressed.TextOffsetH := "0" , Reb.Pressed.BackgroundColor := "0xFF00000" , Reb.Pressed.ButtonOuterBorderColor := "0x77000000" , Reb.Pressed.ButtonCenterBorderColor := "0x77000000" , Reb.Pressed.ButtonInnerBorderColor1 := "0xAA000000" , Reb.Pressed.ButtonInnerBorderColor2 := "0xAA000000" , Reb.Pressed.ButtonMainColor1 := "0xFFAA0000" , Reb.Pressed.ButtonMainColor2 := "0xFFAA0000" , Reb.Pressed.ButtonAddGlossy := "1" , Reb.Pressed.GlossTopColor := "0x00333333" , Reb.Pressed.GlossTopAccentColor := "00FF0000" , Reb.Pressed.GlossBottomColor := "00FF3366"
-	;********************************
-	
-	return Reb
-}
-BKOButton(){
-	local Reb := {}
-	Reb.All := {}
-	Reb.Default := {}
-	Reb.Hover := {}
-	Reb.Pressed := {}
-	;********************************
-	;All
-	Reb.All.W := 200 , Reb.All.H := 70 , Reb.All.Text := "Rebolusion! (Scroll Lock)" , Reb.All.Font := "Calibri" , Reb.All.FontSize := "22" , Reb.All.BackgroundColor := "0xFF22262A" , Reb.All.ButtonMainColor1 := "0xFFFF6699" , Reb.All.ButtonMainColor2 := "0xFFFF6699"
-	;********************************
-	;Default
-	Reb.Default.W := 200 , Reb.Default.H := 70 , Reb.Default.Text := "Rebolusion! (Scroll Lock)" , Reb.Default.Font := "Calibri" , Reb.Default.FontOptions := " Bold Center vCenter " , Reb.Default.FontSize := "22" , Reb.Default.H := "0x6602112F" , Reb.Default.TextBottomColor2 := "0x6602112F" , Reb.Default.TextTopColor1 := "0xFFFFFFFF" , Reb.Default.TextTopColor2 := "0xFFFFFFFF" , Reb.Default.TextOffsetX := "0" , Reb.Default.TextOffsetY := "0" , Reb.Default.TextOffsetW := "0" , Reb.Default.TextOffsetH := "0" , Reb.Default.BackgroundColor := "0xFF00000" , Reb.Default.ButtonMainColor1 := "0xFFFF6699" , Reb.Default.ButtonMainColor2 := "0xFFFF6699" , Reb.Default.ButtonAddGlossy := "1" , Reb.Default.GlossTopColor := "0x00FFFFFF" , Reb.Default.GlossTopAccentColor := "00FFFFFF" , Reb.Default.GlossBottomColor := "33000000"
-	;********************************
-	;Hover
-	Reb.Hover.W := 200 , Reb.Hover.H := 70 , Reb.Hover.Text := "Rebolusion! (Scroll Lock)" , Reb.Hover.Font := "Calibri" , Reb.Hover.FontOptions := " Bold Center vCenter " , Reb.Hover.FontSize := "24" , Reb.Hover.H := "0x6602112F" , Reb.Hover.TextBottomColor2 := "0x6602112F" , Reb.Hover.TextTopColor1 := "0xFFFFFFFF" , Reb.Hover.TextTopColor2 := "0xFFFFFFFF" , Reb.Hover.TextOffsetX := "0" , Reb.Hover.TextOffsetY := "0" , Reb.Hover.TextOffsetW := "0" , Reb.Hover.TextOffsetH := "0" , Reb.Hover.BackgroundColor := "0xFF00000" , Reb.Hover.ButtonMainColor1 := "0xFFFF6699" , Reb.Hover.ButtonMainColor2 := "0xFFFF6699" , Reb.Hover.ButtonAddGlossy := "1" , Reb.Hover.GlossTopColor := "0x66FFFFFF" , Reb.Hover.GlossTopAccentColor := "00FFFFFF" , Reb.Hover.GlossBottomColor := "00000000"
-	;********************************
-	;Pressed
-	Reb.Pressed.W := 200 , Reb.Pressed.H := 70 , Reb.Pressed.Text := "Rebolusion! (Scroll Lock)" , Reb.Pressed.Font := "Calibri" , Reb.Pressed.FontOptions := " Bold Center vCenter " , Reb.Pressed.FontSize := "22" , Reb.Pressed.H := "0x00FFFFFF" , Reb.Pressed.TextBottomColor2 := "0x00FFFFFF" , Reb.Pressed.TextTopColor1 := "0x77000000" , Reb.Pressed.TextTopColor2 := "0x77000000" , Reb.Pressed.TextOffsetX := "0" , Reb.Pressed.TextOffsetY := "0" , Reb.Pressed.TextOffsetW := "0" , Reb.Pressed.TextOffsetH := "0" , Reb.Pressed.BackgroundColor := "0xFF00000" , Reb.Pressed.ButtonOuterBorderColor := "0x77000000" , Reb.Pressed.ButtonCenterBorderColor := "0x77000000" , Reb.Pressed.ButtonInnerBorderColor1 := "0xAA000000" , Reb.Pressed.ButtonInnerBorderColor2 := "0xAA000000" , Reb.Pressed.ButtonMainColor1 := "0xFFFF6699" , Reb.Pressed.ButtonMainColor2 := "0xFFFF6699" , Reb.Pressed.ButtonAddGlossy := "1" , Reb.Pressed.GlossTopColor := "0x00333333" , Reb.Pressed.GlossTopAccentColor := "00FF0000" , Reb.Pressed.GlossBottomColor := "00FF3366"
-	;********************************
-	
-	return Reb
-}
+SysLogo := New HButton( { Owner: 1 , X: 30 , Y: 25 , W: (800 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "IronAuto ver0.4 beta" , Label: "SysLogo"}, {FontSize : (44 * ( A_ScreenDPI / 96 )) }, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
+SysMinimize := New HButton( { Owner: 1 , X: 870 , Y: 25 , W: (125 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "^_^" , Label: "SysMinimize" }, {FontSize : (44 * ( A_ScreenDPI / 96 )) }, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
+SysClose := New HButton( { Owner: 1 , X: 1010 , Y: 25 , W: (70 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "X" , Label: "SysClose" }, {FontSize : (44 * ( A_ScreenDPI / 96 )) }, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
 
 SysButton(){
 	local MyButtonDesign := {}
@@ -103,15 +48,125 @@ SysButton(){
 	return MyButtonDesign
 }
 
+Theme1 := BKButton()
+GuiButtonType1.SetSessionDefaults( Theme1.All , Theme1.Default , Theme1.Hover , Theme1.Pressed )
+Save := New HButton( { Owner: 1 , X: 100 , Y: 810 , W: (220 * ( A_ScreenDPI / 96 )) , H: (100 * ( A_ScreenDPI / 96 )) , Text: "Save" , Label: "Save" }, {FontSize : (40 * ( A_ScreenDPI / 96 )) }, {FontSize : (36 * ( A_ScreenDPI / 96 )) })
+Reb := New HButton( { Owner: 1 , X: 550 , Y: 810 , W: (220 * ( A_ScreenDPI / 96 )) , H: (100 * ( A_ScreenDPI / 96 )) , Text: "Rebolusion!`n (Scroll Lock)" , Label: "Rebolusion" }, {FontSize : (40 * ( A_ScreenDPI / 96 )) }, {FontSize : (36 * ( A_ScreenDPI / 96 )) })
+
+BKButton(){
+	local Reb := {}
+	Reb.All := {}
+	Reb.Default := {}
+	Reb.Hover := {}
+	Reb.Pressed := {}
+	;********************************
+	;All
+	Reb.All.W := 200 , Reb.All.H := 70 , Reb.All.Text := "Rebolusion! (Scroll Lock)" , Reb.All.Font := "Calibri" , Reb.All.FontSize := "30" , Reb.All.BackgroundColor := "0xFF22262A" , Reb.All.ButtonMainColor1 := "0xFFFF0000" , Reb.All.ButtonMainColor2 := "0x55FF0000" , Reb.All.ButtonAddGlossy := "1"
+	;********************************
+	;Default
+	Reb.Default.W := 200 , Reb.Default.H := 70 , Reb.Default.Text := "Rebolusion! (Scroll Lock)" , Reb.Default.Font := "Calibri" , Reb.Default.FontOptions := " Bold Center vCenter " , Reb.Default.FontSize := "30" , Reb.Default.H := "0x6602112F" , Reb.Default.TextBottomColor2 := "0x6602112F" , Reb.Default.TextTopColor1 := "0xFFFFFFFF" , Reb.Default.TextTopColor2 := "0xFFFFFFFF" , Reb.Default.TextOffsetX := "0" , Reb.Default.TextOffsetY := "0" , Reb.Default.TextOffsetW := "0" , Reb.Default.TextOffsetH := "0" , Reb.Default.BackgroundColor := "0xFF00000" , Reb.Default.ButtonMainColor1 := "0xFFFF0000" , Reb.Default.ButtonMainColor2 := "0xFFFF0000" , Reb.Default.ButtonAddGlossy := "1" , Reb.Default.GlossTopColor := "0x00FFFFFF" , Reb.Default.GlossTopAccentColor := "00FFFFFF" , Reb.Default.GlossBottomColor := "33000000"
+	;********************************
+	;Hover
+	Reb.Hover.W := 200 , Reb.Hover.H := 70 , Reb.Hover.Text := "Rebolusion! (Scroll Lock)" , Reb.Hover.Font := "Calibri" , Reb.Hover.FontOptions := " Bold Center vCenter " , Reb.Hover.FontSize := "40" , Reb.Hover.H := "0x6602112F" , Reb.Hover.TextBottomColor2 := "0x6602112F" , Reb.Hover.TextTopColor1 := "0xFFFFFFFF" , Reb.Hover.TextTopColor2 := "0xFFFFFFFF" , Reb.Hover.TextOffsetX := "0" , Reb.Hover.TextOffsetY := "0" , Reb.Hover.TextOffsetW := "0" , Reb.Hover.TextOffsetH := "0" , Reb.Hover.BackgroundColor := "0xFF00000" , Reb.Hover.ButtonMainColor1 := "0xFFFF0000" , Reb.Hover.ButtonMainColor2 := "0xFFFF0000" , Reb.Hover.ButtonAddGlossy := "1" , Reb.Hover.GlossTopColor := "0x66FFFFFF" , Reb.Hover.GlossTopAccentColor := "00FFFFFF" , Reb.Hover.GlossBottomColor := "00000000"
+	;********************************
+	;Pressed
+	Reb.Pressed.W := 200 , Reb.Pressed.H := 70 , Reb.Pressed.Text := "Rebolusion! (Scroll Lock)" , Reb.Pressed.Font := "Calibri" , Reb.Pressed.FontOptions := " Bold Center vCenter " , Reb.Pressed.FontSize := "30" , Reb.Pressed.H := "0x00FFFFFF" , Reb.Pressed.TextBottomColor2 := "0x00FFFFFF" , Reb.Pressed.TextTopColor1 := "0x77000000" , Reb.Pressed.TextTopColor2 := "0x77000000" , Reb.Pressed.TextOffsetX := "0" , Reb.Pressed.TextOffsetY := "0" , Reb.Pressed.TextOffsetW := "0" , Reb.Pressed.TextOffsetH := "0" , Reb.Pressed.BackgroundColor := "0xFF00000" , Reb.Pressed.ButtonOuterBorderColor := "0x77000000" , Reb.Pressed.ButtonCenterBorderColor := "0x77000000" , Reb.Pressed.ButtonInnerBorderColor1 := "0xAA000000" , Reb.Pressed.ButtonInnerBorderColor2 := "0xAA000000" , Reb.Pressed.ButtonMainColor1 := "0xFFAA0000" , Reb.Pressed.ButtonMainColor2 := "0xFFAA0000" , Reb.Pressed.ButtonAddGlossy := "1" , Reb.Pressed.GlossTopColor := "0x00333333" , Reb.Pressed.GlossTopAccentColor := "00FF0000" , Reb.Pressed.GlossBottomColor := "00FF3366"
+	;********************************
+	
+	return Reb
+}
+
+Theme1 := BKOButton()
+GuiButtonType1.SetSessionDefaults( Theme1.All , Theme1.Default , Theme1.Hover , Theme1.Pressed )
+CFirst := New HButton( { Owner: 1 , X: 860 , Y: 165 , W: (220 * ( A_ScreenDPI / 96 )) , H: (60 * ( A_ScreenDPI / 96 )) , Text: "Pick up the first`n More Catalog button" , Label: "CFirst" }, {FontSize : (24 * ( A_ScreenDPI / 96 )) }, {FontSize : (22 * ( A_ScreenDPI / 96 )) })
+CSecond := New HButton( { Owner: 1 , X: 860 , Y: 230 , W: (220 * ( A_ScreenDPI / 96 )) , H: (60 * ( A_ScreenDPI / 96 )) , Text: "Pick up the second`n More Catalog button" , Label: "CSecond" }, {FontSize : (24 * ( A_ScreenDPI / 96 )) }, {FontSize : (22 * ( A_ScreenDPI / 96 )) })
+CThird := New HButton( { Owner: 1 , X: 860 , Y: 295 , W: (220 * ( A_ScreenDPI / 96 )) , H: (60 * ( A_ScreenDPI / 96 )) , Text: "Pick up the third`n More Catalog button" , Label: "CThird" }, {FontSize : (24 * ( A_ScreenDPI / 96 )) }, {FontSize : (22 * ( A_ScreenDPI / 96 )) })
+
+BKOButton(){
+	local Cat := {}
+	Cat.All := {}
+	Cat.Default := {}
+	Cat.Hover := {}
+	Cat.Pressed := {}
+	;********************************
+	;All
+	Cat.All.W := 200 , Cat.All.H := 70 , Cat.All.Text := "Rebolusion! (Scroll Lock)" , Cat.All.Font := "Calibri" , Cat.All.FontSize := "22" , Cat.All.BackgroundColor := "0xFF22262A" , Cat.All.ButtonMainColor1 := "0xFFFF6699" , Cat.All.ButtonMainColor2 := "0xFFFF6699"
+	;********************************
+	;Default
+	Cat.Default.W := 200 , Cat.Default.H := 70 , Cat.Default.Text := "Rebolusion! (Scroll Lock)" , Cat.Default.Font := "Calibri" , Cat.Default.FontOptions := " Bold Center vCenter " , Cat.Default.FontSize := "22" , Cat.Default.H := "0x6602112F" , Cat.Default.TextBottomColor2 := "0x6602112F" , Cat.Default.TextTopColor1 := "0xFFFFFFFF" , Cat.Default.TextTopColor2 := "0xFFFFFFFF" , Cat.Default.TextOffsetX := "0" , Cat.Default.TextOffsetY := "0" , Cat.Default.TextOffsetW := "0" , Cat.Default.TextOffsetH := "0" , Cat.Default.BackgroundColor := "0xFF00000" , Cat.Default.ButtonMainColor1 := "0xFFFF6699" , Cat.Default.ButtonMainColor2 := "0xFFFF6699" , Cat.Default.ButtonAddGlossy := "1" , Cat.Default.GlossTopColor := "0x00FFFFFF" , Cat.Default.GlossTopAccentColor := "00FFFFFF" , Cat.Default.GlossBottomColor := "33000000"
+	;********************************
+	;Hover
+	Cat.Hover.W := 200 , Cat.Hover.H := 70 , Cat.Hover.Text := "Rebolusion! (Scroll Lock)" , Cat.Hover.Font := "Calibri" , Cat.Hover.FontOptions := " Bold Center vCenter " , Cat.Hover.FontSize := "24" , Cat.Hover.H := "0x6602112F" , Cat.Hover.TextBottomColor2 := "0x6602112F" , Cat.Hover.TextTopColor1 := "0xFFFFFFFF" , Cat.Hover.TextTopColor2 := "0xFFFFFFFF" , Cat.Hover.TextOffsetX := "0" , Cat.Hover.TextOffsetY := "0" , Cat.Hover.TextOffsetW := "0" , Cat.Hover.TextOffsetH := "0" , Cat.Hover.BackgroundColor := "0xFF00000" , Cat.Hover.ButtonMainColor1 := "0xFFFF6699" , Cat.Hover.ButtonMainColor2 := "0xFFFF6699" , Cat.Hover.ButtonAddGlossy := "1" , Cat.Hover.GlossTopColor := "0x66FFFFFF" , Cat.Hover.GlossTopAccentColor := "00FFFFFF" , Cat.Hover.GlossBottomColor := "00000000"
+	;********************************
+	;Pressed
+	Cat.Pressed.W := 200 , Cat.Pressed.H := 70 , Cat.Pressed.Text := "Rebolusion! (Scroll Lock)" , Cat.Pressed.Font := "Calibri" , Cat.Pressed.FontOptions := " Bold Center vCenter " , Cat.Pressed.FontSize := "22" , Cat.Pressed.H := "0x00FFFFFF" , Cat.Pressed.TextBottomColor2 := "0x00FFFFFF" , Cat.Pressed.TextTopColor1 := "0x77000000" , Cat.Pressed.TextTopColor2 := "0x77000000" , Cat.Pressed.TextOffsetX := "0" , Cat.Pressed.TextOffsetY := "0" , Cat.Pressed.TextOffsetW := "0" , Cat.Pressed.TextOffsetH := "0" , Cat.Pressed.BackgroundColor := "0xFF00000" , Cat.Pressed.ButtonOuterBorderColor := "0x77000000" , Cat.Pressed.ButtonCenterBorderColor := "0x77000000" , Cat.Pressed.ButtonInnerBorderColor1 := "0xAA000000" , Cat.Pressed.ButtonInnerBorderColor2 := "0xAA000000" , Cat.Pressed.ButtonMainColor1 := "0xFFFF6699" , Cat.Pressed.ButtonMainColor2 := "0xFFFF6699" , Cat.Pressed.ButtonAddGlossy := "1" , Cat.Pressed.GlossTopColor := "0x00333333" , Cat.Pressed.GlossTopAccentColor := "00FF0000" , Cat.Pressed.GlossBottomColor := "00FF3366"
+	;********************************
+	
+	return Cat
+}
+
+Theme1 := BKOButtont()
+GuiButtonType1.SetSessionDefaults( Theme1.All , Theme1.Default , Theme1.Hover , Theme1.Pressed )
+tuning := New HButton( { Owner: 1 , X: 860 , Y: 400 PosH  , W: (220 * ( A_ScreenDPI / 96 )) , H: (220 * ( A_ScreenDPI / 96 )) , Text: "Tuning setting" , Label: "tuning" } , {FontSize : (44 * ( A_ScreenDPI / 96 )) }, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
+
+G := Gdip_GraphicsFromImage( HButton.Button[ tuning ].Bitmaps.Default.pBitmap ) ;Get the pointer to the buttons graphics.
+Bitmap := Gdip_CreateBitmapFromFile( "img\sheep.png" ) ;get an image from your files.
+Gdip_DrawImage( G , Bitmap, 0, 0, (220 * ( A_ScreenDPI / 96 )), (220 * ( A_ScreenDPI / 96 )) ) ;Draw the image on to the buttons graphics.
+;*********************
+;Ideally you would do some cleanup in here. ( delete the graphics and delete the old hBitmap )
+;If your script doesn't need to recreate the window over and over you can just skip it and there shouldn't be any issues.
+;*********************
+HButton.Button[ tuning ].Bitmaps.Default.hBitmap := Gdip_CreateHBITMAPFromBitmap( HButton.Button[ tuning ].Bitmaps.Default.pBitmap ) ;Replace the old hBitmap with a new copy 
+HButton._DisplayButton( tuning , HButton.Button[ tuning ].Bitmaps.Default.hBitmap ) ;Display the updated button. (Only required if you change the "Default" button bitmap )
+
+G := Gdip_GraphicsFromImage( HButton.Button[ tuning ].Bitmaps.Hover.pBitmap ) ;Get the pointer to the buttons graphics.
+Bitmap := Gdip_CreateBitmapFromFile( "img\sheep_ro.png" ) ;get an image from your files.
+Gdip_DrawImage( G , Bitmap, 0, 0, (220 * ( A_ScreenDPI / 96 )), (220 * ( A_ScreenDPI / 96 )) ) ;Draw the image on to the buttons graphics.
+;*********************
+;Ideally you would do some cleanup in here. ( delete the graphics and delete the old hBitmap )
+;If your script doesn't need to recreate the window over and over you can just skip it and there shouldn't be any issues.
+;*********************
+HButton.Button[ tuning ].Bitmaps.Hover.hBitmap := Gdip_CreateHBITMAPFromBitmap( HButton.Button[ tuning ].Bitmaps.Hover.pBitmap ) ;Replace the old hBitmap with a new copy 
+HButton._DisplayButton( tuning , HButton.Button[ tuning ].Bitmaps.Hover.hBitmap ) ;Display the updated button. (Only required if you change the "Default" button bitmap )
+
+BKOButtont(){
+	local Cat := {}
+	Cat.All := {}
+	Cat.Default := {}
+	Cat.Hover := {}
+	Cat.Pressed := {}
+	;********************************
+	;All
+	Cat.All.W := 200 , Cat.All.H := 70 , Cat.All.Text := "Rebolusion! (Scroll Lock)" , Cat.All.Font := "Calibri" , Cat.All.FontSize := "22" , Cat.All.BackgroundColor := "0xFF22262A" , Cat.All.ButtonMainColor1 := "0xFFFF66FF" , Cat.All.ButtonMainColor2 := "0xFFFF66FF"
+	;********************************
+	;Default
+	Cat.Default.W := 200 , Cat.Default.H := 70 , Cat.Default.Text := "Rebolusion! (Scroll Lock)" , Cat.Default.Font := "Calibri" , Cat.Default.FontOptions := " Bold Center vCenter " , Cat.Default.FontSize := "22" , Cat.Default.H := "0x6602112F" , Cat.Default.TextBottomColor2 := "0x6602112F" , Cat.Default.TextTopColor1 := "0xFFFFFFFF" , Cat.Default.TextTopColor2 := "0xFFFFFFFF" , Cat.Default.TextOffsetX := "0" , Cat.Default.TextOffsetY := "0" , Cat.Default.TextOffsetW := "0" , Cat.Default.TextOffsetH := "0" , Cat.Default.BackgroundColor := "0xFF00000" , Cat.Default.ButtonMainColor1 := "0xFFFF6699" , Cat.Default.ButtonMainColor2 := "0xFFFF6699" , Cat.Default.ButtonAddGlossy := "1" , Cat.Default.GlossTopColor := "0x00FFFFFF" , Cat.Default.GlossTopAccentColor := "00FFFFFF" , Cat.Default.GlossBottomColor := "33000000"
+	;********************************
+	;Hover
+	Cat.Hover.W := 200 , Cat.Hover.H := 70 , Cat.Hover.Text := "Rebolusion! (Scroll Lock)" , Cat.Hover.Font := "Calibri" , Cat.Hover.FontOptions := " Bold Center vCenter " , Cat.Hover.FontSize := "24" , Cat.Hover.H := "0x6602112F" , Cat.Hover.TextBottomColor2 := "0x6602112F" , Cat.Hover.TextTopColor1 := "0xFFFFFFFF" , Cat.Hover.TextTopColor2 := "0xFFFFFFFF" , Cat.Hover.TextOffsetX := "0" , Cat.Hover.TextOffsetY := "0" , Cat.Hover.TextOffsetW := "0" , Cat.Hover.TextOffsetH := "0" , Cat.Hover.BackgroundColor := "0xFF00000" , Cat.Hover.ButtonMainColor1 := "0xFFFF6699" , Cat.Hover.ButtonMainColor2 := "0xFFFF6699" , Cat.Hover.ButtonAddGlossy := "1" , Cat.Hover.GlossTopColor := "0x66FFFFFF" , Cat.Hover.GlossTopAccentColor := "00FFFFFF" , Cat.Hover.GlossBottomColor := "00000000"
+	;********************************
+	;Pressed
+	Cat.Pressed.W := 200 , Cat.Pressed.H := 70 , Cat.Pressed.Text := "Rebolusion! (Scroll Lock)" , Cat.Pressed.Font := "Calibri" , Cat.Pressed.FontOptions := " Bold Center vCenter " , Cat.Pressed.FontSize := "22" , Cat.Pressed.H := "0x00FFFFFF" , Cat.Pressed.TextBottomColor2 := "0x00FFFFFF" , Cat.Pressed.TextTopColor1 := "0x77000000" , Cat.Pressed.TextTopColor2 := "0x77000000" , Cat.Pressed.TextOffsetX := "0" , Cat.Pressed.TextOffsetY := "0" , Cat.Pressed.TextOffsetW := "0" , Cat.Pressed.TextOffsetH := "0" , Cat.Pressed.BackgroundColor := "0xFF00000" , Cat.Pressed.ButtonOuterBorderColor := "0x77000000" , Cat.Pressed.ButtonCenterBorderColor := "0x77000000" , Cat.Pressed.ButtonInnerBorderColor1 := "0xAA000000" , Cat.Pressed.ButtonInnerBorderColor2 := "0xAA000000" , Cat.Pressed.ButtonMainColor1 := "0xFFFF6699" , Cat.Pressed.ButtonMainColor2 := "0xFFFF6699" , Cat.Pressed.ButtonAddGlossy := "1" , Cat.Pressed.GlossTopColor := "0x00333333" , Cat.Pressed.GlossTopAccentColor := "00FF0000" , Cat.Pressed.GlossBottomColor := "00FF3366"
+	;********************************
+	
+	return Cat
+}
+
 Toggle := 1 ;relative with on/off msgbox
 
 ;config load;
+IniRead, RadioICD, config.ini, DraftRadio, ICD
+IniRead, RadioCAXA, config.ini, DraftRadio, CAXA
 IniRead, FX, config.ini, C, FX
 IniRead, FY, config.ini, C, FY
 IniRead, SX, config.ini, C, SX
 IniRead, SY, config.ini, C, SY
 IniRead, TX, config.ini, C, TX
 IniRead, TY, config.ini, C, TY
+IniRead, tA, config.ini, tuning Config, normal
+IniRead, tB, config.ini, tuning Config, *
+IniRead, tC, config.ini, tuning Config, +
+IniRead, tD, config.ini, tuning Config, -
 ;IniRead, TL, config.ini, ToggleLock, TL
 IniRead, HK%Col%, config.ini, Hotkeys, Userkey1_%Col%
 IniRead, HK%Col%, config.ini, Hotkeys, Userkey1_%Col%
@@ -186,12 +241,13 @@ IniRead, Radio101, config.ini, CatalogRadio, R101
 IniRead, Radio102, config.ini, CatalogRadio, R102
 IniRead, Radio103, config.ini, CatalogRadio, R103
 
+;#GUI start
 UCT=
 (
 User's comments`nex) name of the catraoutg
 )
 Gui, Font, s14 cFFFFFF , Calibri bold
-Gui, Add, Text, BackgroundTrans x35 y100 w140 h50 , Inpud Shorcud`n Do'nt use [Alt] Key ;Userkey1_
+Gui, Add, Text, BackgroundTrans x35 y100 w140 h50 , Inpud Shorcud`n ;Userkey1_
 Gui, Add, Text, BackgroundTrans x+10 w80 h50  , Catarogs colom ;Userkey2_
 Gui, Add, Text, BackgroundTrans x+35 w200 h50  , For Multiple Catalog browers ;Radio buttons
 Gui, Add, Text, BackgroundTrans x+40 w280 h50 , %UCT% ;UC_
@@ -202,6 +258,8 @@ Gui, Add, Text, BackgroundTrans x+40 w280 h50 , %UCT% ;UC_
 ;Gui, Add, Text, BackgroundTrans y+30 w200 h50  , Toggle key for Lock or Unlock dimension
 
 Gui, Font, s14 cFFFFFF , Calibri
+
+Gui, Add, Hotkey, x1050 y170 w0 h0, Dummy ;Dummy for unfocus HK1
 
 ;1
 Gui, Add, GroupBox, x30 y150 w800 h60 %MyColor1%, 1
@@ -379,94 +437,82 @@ Gui, Add, Edit, x+30 w260 h30 vUC10 Center -E0x200 -Border, %UC10%
 ;Gui, Add, Button, x870 y150 w200 h60 gCThird, Pick up the third More Catalog button
 ;Gui, Add, Button, x250 y670 w200 h70 gSave, Save
 ;Gui, Add, Button, x630 y670 w200 h70 gRebolusion vReb, Rebolusion! (Scroll Lock)
-WinSet, Region, 0-0 w(1100 * ( A_ScreenDPI / 96 )) h(900 * ( A_ScreenDPI / 96 )) R40-40, ahk_id %GUIHwnd% ;DPI Issue
-Gui, Show,x20 y100 w1100 h800, IronAuto 0.3
-Gui -MaximizeBox -MinimizeBox -Caption
+Gui, -Caption +LastFound
+Guiw := 1100 * A_ScreenDPI / 96
+Guih := 950 * A_ScreenDPI / 96
+WinSet, Region, 0-0 w%Guiw% h%Guih% R40-40
 Gui, +hwndGUIHwnd
+Gui, Show,x20 y20 w1100 h950, IronAuto
+
+;ICD fine tuning
+NumA := tA * ( A_ScreenDPI / 96 )
+NumB := tB * ( A_ScreenDPI / 96 )
+NumC := tC * ( A_ScreenDPI / 96 )
+NumD := tD * ( A_ScreenDPI / 96 )
 return
 
-;SetTitleMatchMode, 2
-;#IfWinActive ahk_class AutoHotkey ;ctrl+s shortcut for save button, failed to work only if this window is activated
-
-CFirst:
-ToolTipText := "Right Click to save a current mouse position to`nFirst More Catalog button's position"
-SetTimer, Timer2, 10
-IfWinExist ahk_exe IronCAD.exe
-{
-	winactivate ahk_exe IronCAD.exe
-	WinWaitActive ahk_exe IronCAD.exe
-	Keywait, RButton, D
-	SetTimer, Timer2, Off
-	FFToolTip()
-	SoundBeep, 500, 300
-	MouseGetPos, FX, FY
-	IniWrite, %FX%, config.ini, C, FX
-	IniWrite, %FY%, config.ini, C, FY
-	winactivate ahk_exe IronAuto.exe
-}
-else
-{
-	SetTimer, Timer2, Off
-	FFToolTip()
-	MsgBox, , What the stupid capitalist?, Run IronCAD before clicking this button a moron
-}
+tuning:
+Gui, tuning: New, , Tuning Setting
+Gui, Show, center w500 h400
+Gui, tuning: Font, cWhite ;font color
+Gui, tuning: Color, Black, Black ;background color
+Gui, tuning: Font, s14 cFFFFFF , Calibri bold
+Gui, Add, Text, x100 y40, Without Special key
+Gui, Add, Edit, x300 w100 y40
+Gui, Add, UpDown, vtA Range2-500, %tA%
+Gui, Add, Text, x410 y40, px
+Gui, Add, Text, x100 y100, With Numpad *
+Gui, Add, Edit, x300 w100 y100
+Gui, Add, UpDown, vtB Range2-500, %tB%
+Gui, Add, Text, x410 y100, px
+Gui, Add, Text, x100 y160, With Numpad -
+Gui, Add, Edit, x300 w100 y160
+Gui, Add, UpDown, vtD Range2-500, %tD%
+Gui, Add, Text, x410 y160, px
+Gui, Add, Text, x100 y220, With Numpad +
+Gui, Add, Edit, x300 w100 y220
+Gui, Add, UpDown, vtC Range2-500, %tC%
+Gui, Add, Text, x410 y220, px
+Gui, Add, Picture, x100 y305, img\tICD.png
+Gui, Add, Picture, x300 y305, img\tCAXA.png
+Gui, Add, Radio, x125 y300 vRadioICD, ICD
+Gui, Add, Radio, x325 y300 vRadioCAXA, CAXA
+GuiControl, , RadioICD, %RadioICD%
+GuiControl, , RadioCAXA, %RadioCAXA%
+Theme1 := BKButton()
+GuiButtonType1.SetSessionDefaults( Theme1.All , Theme1.Default , Theme1.Hover , Theme1.Pressed )
+Save := New HButton( { Owner: "tuning" , X: 100 , Y: 340 , W: (100 * ( A_ScreenDPI / 96 )) , H: (40 * ( A_ScreenDPI / 96 )) , Text: "OK" , Label: "tOK" }, {FontSize : (26 * ( A_ScreenDPI / 96 )) }, {FontSize : (24 * ( A_ScreenDPI / 96 )) })
+Reb := New HButton( { Owner: "tuning" , X: 300 , Y: 340 , W: (100 * ( A_ScreenDPI / 96 )) , H: (40 * ( A_ScreenDPI / 96 )) , Text: "Cancle" , Label: "tCancle" }, {FontSize : (26 * ( A_ScreenDPI / 96 )) }, {FontSize : (24 * ( A_ScreenDPI / 96 )) })
+Gui, -Caption +LastFound
+tuningGuiw := 500 * A_ScreenDPI / 96
+tuningGuih := 400 * A_ScreenDPI / 96
+WinSet, Region, 0-0 w%tuningGuiw% h%tuningGuih% R40-40
 return
 
-CSecond:
-ToolTipText := "Right Click to save a current mouse position to`nSecond More Catalog button's position"
-SetTimer, Timer2, 10
-IfWinExist ahk_exe IronCAD.exe
-{
-	winactivate ahk_exe IronCAD.exe
-	WinWaitActive ahk_exe IronCAD.exe
-	Keywait, RButton, D
-	SetTimer, Timer2, Off
-	FFToolTip()
-	SoundBeep, 500, 300
-	MouseGetPos, SX, SY
-	IniWrite, %SX%, config.ini, C, SX
-	IniWrite, %SY%, config.ini, C, SY
-	winactivate ahk_exe IronAuto.exe
-}
-else
-{
-	SetTimer, Timer2, Off
-	FFToolTip()
-	MsgBox, , What the stupid capitalist?, Run IronCAD before clicking this button a moron
-}
+tOK:
+Gui, Submit, NoHide
+Gui, Hide
+IniWrite, %RadioICD%, config.ini, DraftRadio, ICD
+IniWrite, %RadioCAXA%, config.ini, DraftRadio, CAXA
+IniWrite, %tA%, config.ini, tuning config, normal
+IniWrite, %tB%, config.ini, tuning config, *
+IniWrite, %tC%, config.ini, tuning config, +
+IniWrite, %tD%, config.ini, tuning config, -
+NumA := tA * ( A_ScreenDPI / 96 )
+NumB := tB * ( A_ScreenDPI / 96 )
+NumC := tC * ( A_ScreenDPI / 96 )
+NumD := tD * ( A_ScreenDPI / 96 )
 return
 
-CThird:
-ToolTipText := "Right Click to save a current mouse position to`nThird More Catalog button's position"
-SetTimer, Timer2, 10
-IfWinExist ahk_exe IronCAD.exe
-{
-	winactivate ahk_exe IronCAD.exe
-	WinWaitActive ahk_exe IronCAD.exe
-	Keywait, RButton, D
-	SetTimer, Timer2, Off
-	FFToolTip()
-	SoundBeep, 500, 300
-	MouseGetPos, TX, TY
-	IniWrite, %TX%, config.ini, C, TX
-	IniWrite, %TY%, config.ini, C, TY
-	winactivate ahk_exe IronAuto.exe
-}
-else
-{
-	SetTimer, Timer2, Off
-	FFToolTip()
-	MsgBox, , What the stupid capitalist?, Run IronCAD before clicking this button a moron
-}
+tCancle:
+Gui, Hide
 return
-
-Timer2:
-FFToolTip(ToolTipText)
-Return
 
 ;#^s::
 Save:
    Gui, Submit, NoHide
+	Subtitle.allowDrag := true
+	Subtitle.Render("Saved!","x:center y:center h60 size:14  color:red radius:15 time:3000", "y:center color:white")
    IniWrite, %Radio11%, config.ini, CatalogRadio, R11
    IniWrite, %Radio12%, config.ini, CatalogRadio, R12
    IniWrite, %Radio13%, config.ini, CatalogRadio, R13
@@ -568,8 +614,26 @@ If Toggle = 0
    Hotkey, %HK9% , 9, on
    Hotkey, %HK10% , 10, on
 ;   Hotkey, %TL%, ToggleLock, on
-   winactivate ahk_exe IronCAD.exe
-   Msgbox, , Workers of the world unite!, Rebolusion rises!!, 5000
+	WinMinimize
+	WinActivate ahk_exe IronCAD.exe
+	Subtitle.allowDrag := true
+	text := {}
+	text.outline := {}
+	text.size := "8vh"
+	text.outline.stroke := "2 px"
+	text.outline.color := "Black"
+	text.outline.glow := "6px"
+	text.outline.tint := "Red"
+	text.color := "White"
+	text.time := "3000"
+	
+	background := {}
+	background.color := "Transparent"
+	background.x := "center"
+	background.y := "center"
+	background.time :="3000"
+	
+	Subtitle.Render("Workers of the world unite, Rebolusion rises!!", background, text)
    }
 Else
    {
@@ -594,10 +658,144 @@ Else
    Hotkey, %HK9% , 9, off
    Hotkey, %HK10% , 10, off
 ;   Hotkey, %TL%, ToggleLock, off
-   Msgbox, , Workers of the world unite!, Rebolusion is over!, 5000
+	Subtitle.allowDrag := true
+	text := {}
+	text.outline := {}
+	text.size := "8vh"
+	text.outline.stroke := "2 px"
+	text.outline.color := "Black"
+	text.outline.glow := "6px"
+	text.outline.tint := "Red"
+	text.color := "White"
+	text.time := "3000"
+	
+	background := {}
+	background.color := "Transparent"
+	background.x := "center"
+	background.y := "center"
+	background.time :="3000"
+	
+	Subtitle.Render("Rebolusion is over!", background, text)
    }
 return
 
+CFirst:
+ToolTipText := "Right Click to save a current mouse position to`nFirst More Catalog button's position"
+SetTimer, Timer2, 10
+IfWinExist ahk_exe IronCAD.exe
+{
+	winactivate ahk_exe IronCAD.exe
+	WinWaitActive ahk_exe IronCAD.exe
+	Keywait, RButton, D
+	SetTimer, Timer2, Off
+	FFToolTip()
+	SoundBeep, 500, 300
+	MouseGetPos, FX, FY
+	IniWrite, %FX%, config.ini, C, FX
+	IniWrite, %FY%, config.ini, C, FY
+	winactivate ahk_exe IronAuto.exe
+	Subtitle.allowDrag := true
+	Subtitle.Render("Saved!","x:center y:center h60 size:14  color:red radius:15 time:3000", "y:center color:white")
+}
+else
+{
+	SetTimer, Timer2, Off
+	FFToolTip()
+	MsgBox, , What the stupid capitalist?, Run IronCAD before click this button a moron
+}
+return
+
+CSecond:
+ToolTipText := "Right Click to save a current mouse position to`nSecond More Catalog button's position"
+SetTimer, Timer2, 10
+IfWinExist ahk_exe IronCAD.exe
+{
+	winactivate ahk_exe IronCAD.exe
+	WinWaitActive ahk_exe IronCAD.exe
+	Keywait, RButton, D
+	SetTimer, Timer2, Off
+	FFToolTip()
+	SoundBeep, 500, 300
+	MouseGetPos, SX, SY
+	IniWrite, %SX%, config.ini, C, SX
+	IniWrite, %SY%, config.ini, C, SY
+	winactivate ahk_exe IronAuto.exe
+	Subtitle.allowDrag := true
+	Subtitle.Render("Saved!","x:center y:center h60 size:14  color:red radius:15 time:3000", "y:center color:white")
+}
+else
+{
+	SetTimer, Timer2, Off
+	FFToolTip()
+	MsgBox, , What the stupid capitalist?, Run IronCAD before click this button a moron
+}
+return
+
+CThird:
+ToolTipText := "Right Click to save a current mouse position to`nThird More Catalog button's position"
+SetTimer, Timer2, 10
+IfWinExist ahk_exe IronCAD.exe
+{
+	winactivate ahk_exe IronCAD.exe
+	WinWaitActive ahk_exe IronCAD.exe
+	Keywait, RButton, D
+	SetTimer, Timer2, Off
+	FFToolTip()
+	SoundBeep, 500, 300
+	MouseGetPos, TX, TY
+	IniWrite, %TX%, config.ini, C, TX
+	IniWrite, %TY%, config.ini, C, TY
+	winactivate ahk_exe IronAuto.exe
+	Subtitle.allowDrag := true
+	Subtitle.Render("Saved!","x:center y:center h60 size:14  color:red radius:15 time:3000", "y:center color:white")
+}
+else
+{
+	SetTimer, Timer2, Off
+	FFToolTip()
+	MsgBox, , What the stupid capitalist?, Run IronCAD before click this button a moron
+}
+return
+
+SysLogo: ;trap
+i := 0
+Loop, 5
+{
+	MsgBox, , Wanring,  Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n
+	i++1
+}
+return
+
+
+~!F4::
+IfWinActive ahk_id %GUIHwnd%
+ExitApp
+
+Timer_Spam:
+;TrayTip, Counter, %i%
+    i++
+return
+
+Timer2:
+FFToolTip(ToolTipText)
+Return
+
+SysMinimize:
+WinMinimize, ahk_id %GUIHwnd%
+return
+
+SysClose:
+WinClose, ahk_id %GUIHwnd%
+return
+
+GuiClose:
+ExitApp
+
+;#GUI ends
+;SetTitleMatchMode, 2
+;#IfWinActive ahk_class AutoHotkey ;ctrl+s shortcut for save button, failed to work only if this window is activated
+
+;#Catalog start
 1:
 SetControlDelay -1
 gui, submit, nohide
@@ -878,57 +1076,75 @@ if (Radio103=1){
 }
 return
 
+;#Catalog ends
+;#Function key start
+
 ~ESC::
+IfWinActive ahk_id %GUIHwnd%{
+WinMinimize, ahk_id %GUIHwnd%}
+SetBatchLines -1
+Suspend, On
+MouseGetPos, xhome, yhome
 if (A_ScreenDPI = 96) {
 	Text:="|<>*140$50.y0YUE0008k184000240G10000VCYXlm8jcH994WH/+4WGF8ZIWV8YYG9J8cW994WAm/kWGD728WU"
 	if (ok:=FindText(X, Y, 3445-150000, 2144-150000, 3445+150000, 2144+150000, 0, 0, Text))
-	{
-		MouseGetPos, xpos, ypos
-		BlockInput, On
-		FindText().Click(X, Y, "L")
+	{	
+		MouseGetPos, xhome, yhome
+		FindText().Click(X, Y, L)
+;		MouseMove, 400, 400
 		Send, {Home}
 		Send, {Enter}
-		MouseMove, %xpos%, %ypos%
+		BlockInput, SendAndMouse
+;		MouseClick, Left, 1, 1	
+		MouseMove, %xhome%, %yhome%
+BlockInput, Default
 	}
 }
 else if (A_ScreenDPI = 120) {
 	Text:="|<>*152$60.z04Y100000kU0Y100000kE0Y100000kGoYT7a8fWkH4YnAGNAmkG4YV8GN8EkG4YV8GJ8Ekm4YV8Fb8ElW4YnAFa8Gz24YR7VW8GU"
 	if (ok:=FindText(X, Y, 3445-150000, 2144-150000, 3445+150000, 2144+150000, 0, 0, Text))
 	{
-		MouseGetPos, xpos, ypos
-		BlockInput, On
-		FindText().Click(X, Y, "L")
+		MouseGetPos, xhome, yhome
+		FindText().Click(X, Y, L)
+;		MouseMove, 400, 400
 		Send, {Home}
 		Send, {Enter}
-		MouseMove, %xpos%, %ypos%
+		BlockInput, SendAndMouse
+;		MouseClick, Left, 1, 1	
+		MouseMove, %xhome%, %yhome%
+BlockInput, Default
 	}
 }
 else if (A_ScreenDPI = 144) {
 	Text:="|<>*160$70.000nA0k00003y03Ak300000AC00n0A00000kA03A0k000030nPAkz3lX6rg1CAn4QMWAPWk4knAkn38lAD0H3Am384rYkw3AAn8AUHGn3kAknAUm15+AD0X3An3AAQskwAAAnAQMVnX3zUknASkw66AC"
 	if (ok:=FindText(X, Y, 3445-150000, 2144-150000, 3445+150000, 2144+150000, 0, 0, Text))
 	{
-		MouseGetPos, xpos, ypos
-		BlockInput, On
-		FindText().Click(X, Y, "L")
+		MouseGetPos, xhome, yhome
+		FindText().Click(X, Y, L)
+;		MouseMove, 400, 400
 		Send, {Home}
 		Send, {Enter}
-		MouseMove, %xpos%, %ypos%
+		BlockInput, SendAndMouse
+;		MouseClick, Left, 1, 1		
+		MouseMove, %xhome%, %yhome%
+BlockInput, Default
 	}
 }	
 else {
-MsgBox, Your current screen DPI is not supported!`nAsk about this msg to Bertrand Kim!`nExiting...
+MsgBox, 48, Hi, Your current screen DPI is not supported!`nAsk about this msg to Bertrand Kim!`nExiting... , 2
 }
+SetBatchLines, 10
+Suspend, Off
 return
 
-;;;;;;;;;;;;;Browser of Scene and Properties Switching Start
-i := 0
+i := 0 ;Browser of Scene and Properties Switching
 toggle := 0
-~Appskey::
+
+^`::
     toggle := !toggle
     if (toggle) {
 		MouseGetPos, xpos, ypos 
-		BlockInput, On
-		Sleep, 100
+		BlockInput, MouseMove
         SetTimer, Timer_Spam, 10
 		t1:=A_TickCount, X:=Y:=""
 		Text:="|<>**40$11.zz07zg5M+kJsfzKEBzN0k1jv1a0Dzs"
@@ -937,12 +1153,12 @@ toggle := 0
 		{
 		   FindText().Click(X, Y, "L")
 		}
+		Send {LButton Up}
 		MouseMove, %xpos%, %ypos%
-		BlockInput, Off
+		BlockInput, MouseMoveOff
     } else {
 		MouseGetPos, xpos, ypos
-		BlockInput, On
-		Sleep, 100
+		BlockInput, MouseMove
         SetTImer, Timer_Spam, Off
 		t1:=A_TickCount, X:=Y:=""
 
@@ -952,18 +1168,61 @@ toggle := 0
 		{
 		   FindText().Click(X, Y, "L")
 		}
+		Send {LButton Up}
 		MouseMove, %xpos%, %ypos%
-		BlockInput, Off
+		BlockInput, MouseMoveOff
     }
+return
+
+^ESC:: ; Click the catalog's back button
+Text:="|<>*167$16.000000000M03U0S03s0TzbzyTzszzVzy1s03U06000000000U"
+if (ok:=FindText(X, Y, 1479-150000, 975-150000, 1479+150000, 975+150000, 0, 0, Text))
+	{
+	MouseGetPos, xhome, yhome
+	FindText().Click(X, Y, "L")
+	MouseMove, %xhome%, %yhome%
+	Click
+	}
 return
 
 ^D:: ; Dimension ToggleLock
 ifWinActive, ahk_exe IronCAD.exe
 SetControlDelay -1
-{
+if (A_ScreenDPI = 96) {
+	MouseGetPos, xpos, ypos
+	Click, Right
+	Sleep, 150
+	Text:="|<>*171$59.00000000000000000000000000000000000000008004000000E008000000U00E0000010sQa00000229VE0000044G3U0000088Y7000000EFA/000000yQCH0000000000000000000000000000000000000000000000000000000000000001"
+	if (ok:=FindText(X, Y, -1819-150000, 251-150000, -1819+150000, 251+150000, 0, 0, Text))
+	{
+	   FindText().Click(X, Y, "L")
+	}
+	else {
+		Sleep, 200
+		Text:="|<>*171$59.00000000000000000000000000000000000000008004000000E008000000U00E0000010sQa00000229VE0000044G3U0000088Y7000000EFA/000000yQCH0000000000000000000000000000000000000000000000000000000000000001"
+		if (ok:=FindText(X, Y, -1819-150000, 251-150000, -1819+150000, 251+150000, 0, 0, Text))
+		{
+		   FindText().Click(X, Y, "L")
+		}
+		else {
+			Sleep, 200
+			Text:="|<>*171$59.00000000000000000000000000000000000000008004000000E008000000U00E0000010sQa00000229VE0000044G3U0000088Y7000000EFA/000000yQCH0000000000000000000000000000000000000000000000000000000000000001"
+			if (ok:=FindText(X, Y, -1819-150000, 251-150000, -1819+150000, 251+150000, 0, 0, Text))
+			{
+			   FindText().Click(X, Y, "L")
+			}
+		}
+	}
+	MouseMove, %xpos%, %ypos%
+}
+else if (A_ScreenDPI = 120) {
+}
+else if (A_ScreenDPI = 144) {
+}
+else {
 	MouseGetPos, xpos, ypos
 	Click, 2
-	Sleep, 333
+	Sleep, 300
 	IfWinExist, Edit Smart Dimension ahk_class #32770
 	{
 		ControlClick, Lock, ahk_exe IRONCAD.EXE, , , NA
@@ -983,37 +1242,731 @@ SetControlDelay -1
 }
 return
 
-;!F4::
-;#IfWinActive ahk_id IronAuto 
-;ExitApp
+;^+!D:: ; ICD AUTO Dimension toggLe
 
-Timer_Spam:
-;TrayTip, Counter, %i%
-    i++
+^F1:: ; Open Properties dialog ICS&ICD USE GRAY 210 TO CUT PROPERTIES...
+MouseClick, right
+MouseGetPos, xpos, ypos
+BlockInput, on
+Sleep, 300
+if (A_ScreenDPI = 96) {
+	Text:="|<>*210$61.y000006000P00000k000Ak0000M0006PbblnynbU3NaPBhaPS01smBaynBxU0kN6nENaUQ0MAmNAAnM6qw6DDXqRbyPQ"
+	if (ok:=FindText(X, Y, -1842-150000, 257-150000, -1842+150000, 257+150000, 0, 0, Text, , , , , , 6))
+	{
+	   FindText().Click(X, Y, "L")
+	}
+	else {
+		Sleep, 300
+		Text:="|<>*210$61.y000006000P00000k000Ak0000M0006PbblnynbU3NaPBhaPS01smBaynBxU0kN6nENaUQ0MAmNAAnM6qw6DDXqRbyPQ"
+		if (ok:=FindText(X, Y, -1842-150000, 257-150000, -1842+150000, 257+150000, 0, 0, Text, , , , , , 6))
+		{
+		   FindText().Click(X, Y, "L")
+		}
+		else {
+			Sleep, 300
+			Text:="|<>*210$61.y000006000P00000k000Ak0000M0006PbblnynbU3NaPBhaPS01smBaynBxU0kN6nENaUQ0MAmNAAnM6qw6DDXqRbyPQ"
+			if (ok:=FindText(X, Y, -1842-150000, 257-150000, -1842+150000, 257+150000, 0, 0, Text, , , , , , 6))
+			{
+			   FindText().Click(X, Y, "L")
+			}
+			else {
+				Sleep, 600
+				Text:="|<>*210$61.y000006000P00000k000Ak0000M0006PbblnynbU3NaPBhaPS01smBaynBxU0kN6nENaUQ0MAmNAAnM6qw6DDXqRbyPQ"
+				if (ok:=FindText(X, Y, -1842-150000, 257-150000, -1842+150000, 257+150000, 0, 0, Text, , , , , , 6))
+				{
+				   FindText().Click(X, Y, "L")
+				}
+				else {
+					Sleep, 600
+					Text:="|<>*210$61.y000006000P00000k000Ak0000M0006PbblnynbU3NaPBhaPS01smBaynBxU0kN6nENaUQ0MAmNAAnM6qw6DDXqRbyPQ"
+					if (ok:=FindText(X, Y, -1842-150000, 257-150000, -1842+150000, 257+150000, 0, 0, Text, , , , , , 6))
+					{
+					   FindText().Click(X, Y, "L")
+					}
+					else {
+						MsgBox, 48, Failed to find Properties icon, report it to me, 3
+					}
+				}
+			}
+		}
+	}
+}
+else if (A_ScreenDPI = 120) {
+}
+else if (A_ScreenDPI = 144) {
+}
+else {
+MsgBox, 48, Hi, Your current screen DPI is not supported!`nAsk about this msg to Bertrand Kim!`nExiting... , 2
+}
+BlockInput, off
+MouseMove, %xpos%, %ypos%
 return
-;;;;;;;;;;;;;Browser of Scene and Properties Switching End
 
+^F2:: ; Open Parameters dialog
+MouseClick, right
+MouseGetPos, xpos, ypos
+Sleep, 500
+BlockInput, on
+if (A_ScreenDPI = 96) {
+	Text:="|<>*199$13.DzY1zzDzbznztYYzyN9DzaGHztU"
+	if (ok:=FindText(X, Y, -1842-150000, 257-150000, -1842+150000, 257+150000, 0, 0, Text))
+	{
+	   FindText().Click(X, Y, "L")
+	}else {
+    MsgBox, 48, Failed to find Parameters icon, report it to me, 3
+	}
+}
+else if (A_ScreenDPI = 120) {
+
+}
+else if (A_ScreenDPI = 144) {
+
+}	
+else {
+MsgBox, 48, Hi, Your current screen DPI is not supported!`nAsk about this msg to Bertrand Kim!`nExiting... , 1.5
+}
+BlockInput, off
+MouseMove, %xpos%, %ypos%
 return
 
-SysLogo:
-i := 0
-Loop, 5
-{
-	MsgBox, , Wanring,  Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n Awww Do not touch me you such a currupted stupid idiot capitalist!!!, this is notthing!!! Just Click OK 5-%i% times!!!`n
-	i++1
+^F3:: ; Open SmartPaint dialog
+MouseClick, right
+MouseGetPos, xpos, ypos
+Sleep, 400
+BlockInput, on
+if (A_ScreenDPI = 96) {
+	Text:="|<>*151$14.00U040100U0E1c0w0S0D07k1w0y0T0DU2"
+	if (ok:=FindText(X, Y, -1842-150000, 257-150000, -1842+150000, 257+150000, 0, 0, Text))
+	{
+	   FindText().Click(X, Y, "L")
+	}else {
+    MsgBox, 48, Failed to find SmartPaint icon, report it to me, 3
+	}
+}
+else if (A_ScreenDPI = 120) {
+
+}
+else if (A_ScreenDPI = 144) {
+
+}	
+else {
+MsgBox, 48, Hi, Your current screen DPI is not supported!`nAsk about this msg to Bertrand Kim!`nExiting... , 1.5
+}
+BlockInput, off
+MouseMove, %xpos%, %ypos%
+return
+
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+NumpadUp::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, 0, -%NumA%, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, 0, -%NumA%, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
 }
 return
 
-SysMinimize:
-WinMinimize, ahk_id %GUIHwnd%
-return
-SysClose:
-WinClose, ahk_id %GUIHwnd%
+~NumpadMult & NumpadUp::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, 0, -%NumB%, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, 0, -%NumB%, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
 return
 
-GuiClose:
-ExitApp
+~NumpadAdd & NumpadUp::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, 0, -%NumC%, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, 0, -%NumC%, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
 
+~NumpadSub & NumpadUp::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, 0, -%NumD%, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, 0, -%NumD%, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+NumpadDown::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, 0, %NumA%, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, 0, %NumA%, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadMult & NumpadDown::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, 0, %NumB%, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, 0, %NumB%, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadAdd & NumpadDown::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, 0, %NumC%, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, 0, %NumC%, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadSub & NumpadDown::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, 0, %NumD%, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, 0, %NumD%, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+NumpadLeft::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, -%NumA%, 0, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, -%NumA%, 0, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadMult & NumpadLeft::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, -%NumB%, 0, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, -%NumB%, 0, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadAdd & NumpadLeft::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, -%NumC%, 0, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, -%NumC%, 0, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadSub & NumpadLeft::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, -%NumD%, 0, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, -%NumD%, 0, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+NumpadRight::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, %NumA%, 0, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, %NumA%, 0, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadMult & NumpadRight::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, %NumB%, 0, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, %NumB%, 0, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadAdd & NumpadRight::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, %NumC%, 0, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, %NumC%, 0, 50, R
+	Click
+	Send Move{Enter}
+	Sleep, %CAXASLEEP%
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+~NumpadSub & NumpadRight::
+If (RadioICD=1){
+	Mouseclick, , , , 1, , D
+	Sleep, 200
+	MouseMove, %NumD%, 0, 50, R
+	Sleep, 200
+	Mouseclick, , , , 1, , U
+	Send, {ESC}
+	Sleep, 350
+}
+If (RadioCAXA=1){
+	BlockInput, MouseMove
+	Send Move{Enter}
+	Send {Esc}
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Send {Enter}
+	Click
+	MouseMove, %NumD%, 0, 50, R
+	Click
+	Sleep, %CAXASLEEP%
+	Send Move{Enter}
+	Send P
+	Sleep, %CAXASLEEP%
+	BlockInput, MouseMoveOff
+}
+return
+
+LWin::Enter
+
+;#Function key end
+
+;#CAXAFunction key start
+
+^+3:: ;Edit Scene
+ImageSearch, , , 10, 10, 1000, 1000, img/CAXA_Finder.png
+if (ErrorLevel = 2){
+    MsgBox, Dang, I coulnd't fin d the CAXA_Finder.png image file!
+}
+else if (ErrorLevel = 1){
+}
+else if (ErrorLevel = 0){
+	Send {ESC}
+	Sleep 300
+	Click Left
+	Click Right
+	Sleep 400
+	if (A_ScreenDPI = 96) {
+		Text:="|<>*206$14.Tz50+E2bzU0VDcE12TEU24yV0/vtm0RU5zyU"
+		if (ok:=FindText(X, Y, -1349-150000, 537-150000, -1349+150000, 537+150000, 0, 0, Text)){
+			Send {Home}
+			Send {Right}
+			Send {Up}
+			Send {Enter}
+		}
+		else{
+			Sleep 400
+			Text:="|<>*206$14.Tz50+E2bzU0VDcE12TEU24yV0/vtm0RU5zyU"
+			if (ok:=FindText(X, Y, -1349-150000, 537-150000, -1349+150000, 537+150000, 0, 0, Text)){
+				Send {Home}
+				Send {Right}
+				Send {Up}
+				Send {Enter}
+			}
+		}
+	}
+	else if (A_ScreenDPI = 120) {
+		MsgBox, Sorry, CAXAuto does not support 125 scale screen DPI yet!
+	}
+	else if (A_ScreenDPI = 144) {
+		MsgBox, Sorry, CAXAuto does not support 150 sacle screen DPI yet!
+	}
+	else {
+		MsgBox, Sorry, CAXAuto does not support your screen DPI yet!
+	}
+}
+return
+
+^+1:: ;View Properties
+ImageSearch, , , 10, 10, 1000, 1000, img/CAXA_Finder.png
+if (ErrorLevel = 2){
+    MsgBox, Dang, I coulnd't fin d the CAXA_Finder.png image file!
+}
+else if (ErrorLevel = 1){
+}
+else if (ErrorLevel = 0){
+	Send {ESC}
+	Sleep 300
+	Click Left
+	Click Right
+	Sleep 400
+	if (A_ScreenDPI = 96) {
+		Text:="|<>*206$14.Tz50+E2bzU0VDcE12TEU24yV0/vtm0RU5zyU"
+		if (ok:=FindText(X, Y, -1349-150000, 537-150000, -1349+150000, 537+150000, 0, 0, Text)){
+			Send {Home}
+			Send {Right}
+			Send {Down}
+			Send {Down}
+			Send {Enter}
+		}
+		else{
+			Sleep 400
+			Text:="|<>*206$14.Tz50+E2bzU0VDcE12TEU24yV0/vtm0RU5zyU"
+			if (ok:=FindText(X, Y, -1349-150000, 537-150000, -1349+150000, 537+150000, 0, 0, Text)){
+				Send {Home}
+				Send {Right}
+				Send {Down}
+				Send {Down}
+				Send {Enter}
+			}
+		}
+	}
+	else if (A_ScreenDPI = 120) {
+		MsgBox, Sorry, CAXAuto does not support 125 scale screen DPI yet!
+	}
+	else if (A_ScreenDPI = 144) {
+		MsgBox, Sorry, CAXAuto does not support 150 sacle screen DPI yet!
+	}
+	else {
+		MsgBox, Sorry, CAXAuto does not support your screen DPI yet!
+	}
+}
+return
+
+^+2:: ;View Orientation
+ImageSearch, , , 10, 10, 1000, 1000, img/CAXA_Finder.png
+if (ErrorLevel = 2){
+    MsgBox, Dang, I coulnd't fin d the CAXA_Finder.png image file!
+}
+else if (ErrorLevel = 1){
+}
+else if (ErrorLevel = 0){
+	Send {ESC}
+	Sleep 300
+	Click Left
+	Click Right
+	Sleep 400
+	if (A_ScreenDPI = 96) {
+		Text:="|<>*206$14.Tz50+E2bzU0VDcE12TEU24yV0/vtm0RU5zyU"
+		if (ok:=FindText(X, Y, -1349-150000, 537-150000, -1349+150000, 537+150000, 0, 0, Text)){
+			Send {Home}
+			Send {Right}
+			Send {Down}
+			Send {Down}
+			Send {Down}
+			Send {Enter}
+		}
+		else{
+			Sleep 400
+			Text:="|<>*206$14.Tz50+E2bzU0VDcE12TEU24yV0/vtm0RU5zyU"
+			if (ok:=FindText(X, Y, -1349-150000, 537-150000, -1349+150000, 537+150000, 0, 0, Text)){
+				Send {Home}
+				Send {Right}
+				Send {Down}
+				Send {Down}
+				Send {Down}
+				Send {Enter}
+			}
+		}
+	}
+	else if (A_ScreenDPI = 120) {
+		MsgBox, Sorry, CAXAuto does not support 125 scale screen DPI yet!
+	}
+	else if (A_ScreenDPI = 144) {
+		MsgBox, Sorry, CAXAuto does not support 150 sacle screen DPI yet!
+	}
+	else {
+		MsgBox, Sorry, CAXAuto does not support your screen DPI yet!
+	}
+}
+return
+
+;#CAXAFunction key end
 
 ; ===============================================================================================================================
 ; FFToolTip(Text:="", X:="", Y:="", WhichToolTip:=1)
