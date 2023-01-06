@@ -21,7 +21,7 @@ MyColor1 := "cFFCC00" ;groubbox text(number) color
 
 Theme1 := SysButton()
 GuiButtonType1.SetSessionDefaults( Theme1.All , Theme1.Default , Theme1.Hover , Theme1.Pressed )
-SysLogo := New HButton( { Owner: 1 , X: 30 , Y: 25 , W: (800 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "IronAuto ver0.4 beta" , Label: "SysLogo"}, {FontSize : (44 * ( A_ScreenDPI / 96 )) }, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
+SysLogo := New HButton( { Owner: 1 , X: 30 , Y: 25 , W: (800 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "IronAuto ver0.4" , Label: "SysLogo"}, {FontSize : (44 * ( A_ScreenDPI / 96 )) }, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
 SysMinimize := New HButton( { Owner: 1 , X: 870 , Y: 25 , W: (125 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "^_^" , Label: "SysMinimize" }, {FontSize : (44 * ( A_ScreenDPI / 96 )) }, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
 SysClose := New HButton( { Owner: 1 , X: 1010 , Y: 25 , W: (70 * ( A_ScreenDPI / 96 )) , H: (70 * ( A_ScreenDPI / 96 )) , Text: "X" , Label: "SysClose" }, {FontSize : (44 * ( A_ScreenDPI / 96 )) }, {FontSize : (40 * ( A_ScreenDPI / 96 )) })
 
