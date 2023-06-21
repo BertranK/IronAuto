@@ -2,7 +2,7 @@
 AHK for IronCAD
 Created by Bertrand Kim
 
-- ICS
+ICS
 [Left window key] : It will be remapping to Enter key (It's useful to press Enter only using the left hand in Chamfer or Blend tools...etc).
 [Ctrl+D] : Toggle lock Scene's Smart dimensions and some 2D sketch's Smart dimensions.
 [ESC] : Escape from Drilldown Selection filter.
@@ -12,7 +12,7 @@ Created by Bertrand Kim
 [Ctrl+F2] : open Parameters under the cursor.
 [Ctrl+F3] : open Smart paints under the cursor.
  
-- CAXA
+CAXA
 [Ctrl + Shift + 1] : View Properties under the cursor.
 [Ctrl + Shift + 2] : View Orientation under the cursor.
 [Ctrl + Shift + 3] : Edit Scene under the cursor.
